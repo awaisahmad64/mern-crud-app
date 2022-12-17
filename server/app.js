@@ -38,6 +38,10 @@ app.delete('/delete/:id', (req, res) => {
     .then((doc) => console.log(doc))
     .catch((error) => console.log(error));
 });
+app.put('/update/:id', (req, res) => {
+  console.log(req.params);
+  console.log(req.body);
+});
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
