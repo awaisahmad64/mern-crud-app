@@ -18,15 +18,7 @@ function Posts() {
       .then((res) => setPosts(res.data))
       .catch((err) => console.log(err));
   });
-  const changeHandle = (e) => {
-    const { name, value } = e.target;
-    setUpdatedPost((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
-  };
+
   const deletePost = (id) => {
     console.log(id);
     axios
@@ -42,11 +34,20 @@ function Posts() {
   const saveUpdatedPost = () => {
     console.log(updatedPost);
     axios
-      .put(`/update/${updatedPost._id}`, updatePost)
+      .put(`/update/${updatedPost._id}`, updatedPost)
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
-    // handleClose();
+    handleClose();
     // window.location.reload();
+  };
+  const changeHandle = (e) => {
+    const { name, value } = e.target;
+    setUpdatedPost((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
   return (
     <div style={{ maxWidth: '90%', margin: '20px auto', textAlign: 'center' }}>

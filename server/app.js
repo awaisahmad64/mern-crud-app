@@ -41,6 +41,15 @@ app.delete('/delete/:id', (req, res) => {
 app.put('/update/:id', (req, res) => {
   console.log(req.params);
   console.log(req.body);
+  Post.findByIdAndUpdate(
+    { _id: req.params.id },
+    {
+      title: req.body.title,
+      description: req.body.description,
+    }
+  )
+    .then((doc) => console.log(doc))
+    .catch((error) => console.log(error));
 });
 app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
